@@ -18,5 +18,7 @@ before_cache:
   - find $HOME/.sbt        -name "*.lock"               -print -delete
 
 script:
-  - sbt prep # See `build.sbt` to check out which tasks this alias performs (compile, compile test, style check...)
-  - sbt test
+  - sbt clean
+  - sbt prep # Check pre-push style hook in order to avoid `push --no-verify` h4ck3rs
+  # Execute the tests including code coverage. More info: https://github.com/scoverage/sbt-coveralls
+  - sbt -Dfile.encoding=UTF8 -J-XX:ReservedCodeCacheSize=256M coverage test
