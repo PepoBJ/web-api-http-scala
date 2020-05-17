@@ -1,8 +1,8 @@
 package com.roberthuaman.api
 
 import org.scalatest.GivenWhenThen
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers._
+import org.scalatest.wordspec.AnyWordSpec
 
 final class ApiTest extends AnyWordSpec with GivenWhenThen {
   "Api" should {
@@ -14,7 +14,7 @@ final class ApiTest extends AnyWordSpec with GivenWhenThen {
       When("we ask him to greet someone")
 
       val nameToGreet = "CodelyTV"
-      val greeting = api.greet(nameToGreet)
+      val greeting    = api.greet(nameToGreet)
 
       Then("it should say hello to someone")
 
