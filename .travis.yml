@@ -20,5 +20,4 @@ before_cache:
 script:
   - sbt clean
   - sbt prep # Check pre-push style hook in order to avoid `push --no-verify` h4ck3rs
-  # Execute the tests including code coverage. More info: https://github.com/scoverage/sbt-coveralls
-  - sbt -Dfile.encoding=UTF8 -J-XX:ReservedCodeCacheSize=256M coverage test
+  - sbt test
