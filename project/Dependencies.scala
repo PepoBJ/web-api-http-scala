@@ -2,14 +2,16 @@ import sbt._
 
 object Dependencies {
   object Versions {
-    val akka = "2.5.7"
+    val akka     = "2.5.7"
     val akkaHttp = "10.0.11"
   }
 
   val production = Seq(
     "com.github.nscala-time" %% "nscala-time" % "2.18.0",
     "com.lihaoyi"            %% "pprint"      % "0.5.3",
-    "com.typesafe.akka"      %% "akka-http"   % Versions.akkaHttp
+    "com.typesafe.akka"      %% "akka-http"   % Versions.akkaHttp,
+    "com.typesafe.akka"      %% "akka-actor"  % Versions.akka,
+    "com.typesafe.akka"      %% "akka-stream" % Versions.akka
   )
 
   val test = Seq(
