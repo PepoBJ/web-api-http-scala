@@ -1,7 +1,7 @@
 package com.roberthuaman.api
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
-import akka.http.scaladsl.server.Directives.{complete, get, path}
+import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 
 object Routes {
@@ -10,6 +10,11 @@ object Routes {
       complete(
         HttpEntity(ContentTypes.`application/json`, """{"status":"ok"}""")
       )
-    }
+    } ~
+      path("ping") {
+        complete(
+          HttpEntity(ContentTypes.`application/json`, """{"data":"pong"}""")
+        )
+      }
   }
 }

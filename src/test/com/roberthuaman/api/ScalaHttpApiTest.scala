@@ -15,5 +15,13 @@ final class ScalaHttpApiTest extends AnyWordSpec with Matchers with ScalaFutures
         entityAs[String] shouldBe """{"status":"ok"}"""
       }
     }
+
+    "return pong while asking a ping" in {
+      Get("/ping") ~> Routes.all ~> check {
+        status shouldBe StatusCodes.OK
+        contentType shouldBe ContentTypes.`application/json`
+        entityAs[String] shouldBe """{"data":"pong"}"""
+      }
+    }
   }
 }
