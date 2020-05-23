@@ -1,23 +1,19 @@
+notifications:
+  slack:
+    secure: PI2Rmp5hu0TZPtpgr530mF9paUVl8q1zdaX5k9/cvcFEmOC6F3FDkMbENEnma1f11P0Ihl87nPsesV9dtb+M23Q+ZpriL9OdlLGCGxGWzYMXMvxSAtWQHgupgHBGZSfBX3VsT+dD/sPfx4GN14kmzwtx23dyp8PL6ZNhnhZ2OadI3s6F/ewN6c94QWsI4L9FyMuUS37Ux7V5tX5/j3wqbMgLWvPyzMWjPY6R1Q/ZP1qHU8oa+RNYoH/rG2NQEuL98s9K3oxCfNCOrMxhVFeMNlc64Lu6/5kA3cWufMwYkqTjitjk6FdjT9fIo8DKhNAov1rW3LTau8BxitYDlI0krq1sTKntrcZcYD5hUsMCoTxTL/3TNp1vY82YpMFy/WZ7y8pzTfuBedbKfWiNgMCEsiJ9w2bZwfW9hbyz7Z/n5RlEQPRr8GvznNaVRGqGehhixnsY4WYwbHZEj/nVvzZuZzlVub1lR472D2QlciPscvthNu7jhyVF5v2hWgVZoaHT2FMwa9yv4DoHysyrZuMBMCUTlydQiTh79TR2yUoKq1im7swL5HsoVU9vV9LNUNfhjx8pAMudnlxKKFm8I8ou70M2UFaEnnmB1Eh/NtYTO0qxLcgdl47aLHSxRQqaidv9A+6x1gwtaIKi8SQbBRcqR3Sg1WV7Ic21FYFd1d6Z3Og=
 language: scala
-
 scala:
-  - 2.13.1
-
+- 2.13.1
 jdk:
-  - openjdk8
-
-# These directories are cached to S3 at the end of the build
+- openjdk8
 cache:
   directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot
-
+  - "$HOME/.ivy2/cache"
+  - "$HOME/.sbt/boot"
 before_cache:
-  # Cleanup the cached directories to avoid unnecessary cache updates
-  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
-  - find $HOME/.sbt        -name "*.lock"               -print -delete
-
+- find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+- find $HOME/.sbt        -name "*.lock"               -print -delete
 script:
-  - sbt clean
-  - sbt prep # Check pre-push style hook in order to avoid `push --no-verify` h4ck3rs
-  - sbt test
+- sbt clean
+- sbt prep
+- sbt test
