@@ -4,7 +4,10 @@ import spray.json.DefaultJsonProtocol._
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.Directives._
+import com.roberthuaman.api.module.video.domain.Video
+import com.roberthuaman.api.module.video.infrastructure.marshaller.VideoJsonFormatMarshaller._
 import spray.json.JsValue
+
 import scala.concurrent.duration._
 
 final class Routes(container: EntryPointDependencyContainer) {
@@ -12,7 +15,8 @@ final class Routes(container: EntryPointDependencyContainer) {
     get {
       path("status")(container.statusGetController.get()) ~
         path("users")(container.userGetController.get()) ~
-        path("videos")(container.videoGetController.get())
+        path("videos")(container.videoGetController.get()) ~
+        path("courses")(container.courseGetController.get())
     } ~
       post {
         path("videos") {
@@ -22,6 +26,17 @@ final class Routes(container: EntryPointDependencyContainer) {
               body("title").convertTo[String],
               body("duration_in_seconds").convertTo[Int].seconds,
               body("category").convertTo[String]
+            )
+          }
+        }
+      } ~
+      post {
+        path("courses") {
+          jsonBody { body =>
+            container.coursePostController.post(
+              body("id").convertTo[String],
+              body("name").convertTo[String],
+              body("videos").convertTo[Seq[Video]]
             )
           }
         }

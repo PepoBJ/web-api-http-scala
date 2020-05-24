@@ -5,6 +5,7 @@ import scala.io.StdIn
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
+import com.roberthuaman.api.module.course.infraestructure.dependency_injection.CourseModuleDependencyContainer
 import com.roberthuaman.api.module.user.infrastructure.dependency_injection.UserModuleDependencyContainer
 import com.roberthuaman.api.module.video.infrastructure.dependency_injection.VideoModuleDependencyContainer
 import com.typesafe.config.ConfigFactory
@@ -24,7 +25,8 @@ object ScalaHttpApi {
 
     val container = new EntryPointDependencyContainer(
       new UserModuleDependencyContainer,
-      new VideoModuleDependencyContainer
+      new VideoModuleDependencyContainer,
+      new CourseModuleDependencyContainer
     )
 
     val routes = new Routes(container)

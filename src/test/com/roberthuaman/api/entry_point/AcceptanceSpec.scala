@@ -3,6 +3,7 @@ package com.roberthuaman.api.entry_point
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import akka.util.ByteString
+import com.roberthuaman.api.module.course.infraestructure.dependency_injection.CourseModuleDependencyContainer
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.concurrent.ScalaFutures
@@ -17,7 +18,8 @@ protected[entry_point] abstract class AcceptanceSpec
   private val routes = new Routes(
     new EntryPointDependencyContainer(
       new UserModuleDependencyContainer,
-      new VideoModuleDependencyContainer
+      new VideoModuleDependencyContainer,
+      new CourseModuleDependencyContainer
     )
   )
 
