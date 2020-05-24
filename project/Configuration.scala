@@ -7,7 +7,7 @@ object Configuration {
     organization := "com.roberthuaman",
     scalaVersion := "2.12.7",
     // Custom folders path (/src/main/scala and /src/test/scala by default)
-    mainClass in Compile := Some("com.roberthuaman.api.ScalaHttpApi"),
+    mainClass in Compile := Some("com.roberthuaman.api.entry_point.ScalaHttpApi"),
     scalaSource in Compile := baseDirectory.value / "/src/main",
     scalaSource in Test := baseDirectory.value / "/src/test",
     resourceDirectory in Compile := baseDirectory.value / "conf",

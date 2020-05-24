@@ -5,7 +5,7 @@ import java.util.UUID
 import com.roberthuaman.api.module.course.domain.{Course, CourseId, CourseName, CourseVideos}
 import com.roberthuaman.api.module.video.infrastructure.marshaller.VideoJsonFormatMarshaller
 import spray.json.DefaultJsonProtocol._
-import spray.json.{DeserializationException, JsArray, JsObject, JsString, JsValue, JsonFormat, RootJsonFormat}
+import spray.json.{DeserializationException, JsArray, JsString, JsValue, JsonFormat, RootJsonFormat}
 
 object CourseJsonFormatMarshaller {
   implicit object UuidMarshaller extends JsonFormat[UUID] {
