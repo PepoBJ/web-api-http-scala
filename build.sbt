@@ -27,3 +27,7 @@ addCommandAlias("tfc", "test:scalafmtCheck") // Check if test files are formatte
 
 // All the needed tasks before pushing to the repository (compile, compile test, format check in prod and test)
 addCommandAlias("prep", ";c;tc;fc;tfc")
+
+TaskKey[Unit]("createDbTables") := (runMain in Compile)
+    .toTask(" com.roberthuaman.api.entry_point.cli.DbTablesCreator")
+    .value
