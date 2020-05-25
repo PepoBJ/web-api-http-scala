@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    container_name: roberthuaman-api-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: robert_huaman_api
+      MYSQL_USER: robert
+      MYSQL_PASSWORD: robertapi
+    ports:
+      - ${API_DB_PORT}:3306
