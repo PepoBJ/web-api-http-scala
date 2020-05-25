@@ -4,7 +4,7 @@ import com.roberthuaman.api.entry_point.controller.course.{CourseGetController, 
 import com.roberthuaman.api.entry_point.controller.status.StatusGetController
 import com.roberthuaman.api.entry_point.controller.user.UserGetController
 import com.roberthuaman.api.entry_point.controller.video.{VideoGetController, VideoPostController}
-import com.roberthuaman.api.module.course.infraestructure.dependency_injection.CourseModuleDependencyContainer
+import com.roberthuaman.api.module.course.infrastructure.dependency_injection.CourseModuleDependencyContainer
 import com.roberthuaman.api.module.user.infrastructure.dependency_injection.UserModuleDependencyContainer
 import com.roberthuaman.api.module.video.infrastructure.dependency_injection.VideoModuleDependencyContainer
 

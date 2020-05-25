@@ -2,10 +2,10 @@ package com.roberthuaman.api.entry_point
 
 import scala.concurrent.duration._
 import akka.http.scaladsl.model.{ContentTypes, StatusCodes}
+import com.roberthuaman.api.module.course.domain.CourseStub
 import spray.json._
-import com.roberthuaman.api.module.course.infraestructure.marshaller.CourseJsValueMarshaller
-import com.roberthuaman.api.module.course.infraestructure.stub.CourseStub
-import com.roberthuaman.api.module.video.infrastructure.stub.VideoStub
+import com.roberthuaman.api.module.course.infrastructure.marshaller.CourseJsValueMarshaller
+import com.roberthuaman.api.module.video.domain.VideoStub
 
 final class CourseSpec extends AcceptanceSpec {
   "save a course" in post(

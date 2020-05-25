@@ -5,7 +5,7 @@ import scala.io.StdIn
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
-import com.roberthuaman.api.module.course.infraestructure.dependency_injection.CourseModuleDependencyContainer
+import com.roberthuaman.api.module.course.infrastructure.dependency_injection.CourseModuleDependencyContainer
 import com.roberthuaman.api.module.user.infrastructure.dependency_injection.UserModuleDependencyContainer
 import com.roberthuaman.api.module.video.infrastructure.dependency_injection.VideoModuleDependencyContainer
 import com.typesafe.config.ConfigFactory

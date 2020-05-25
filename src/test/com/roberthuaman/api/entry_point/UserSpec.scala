@@ -3,7 +3,7 @@ package com.roberthuaman.api.entry_point
 import akka.http.scaladsl.model._
 import spray.json._
 import com.roberthuaman.api.module.user.infrastructure.marshaller.UserJsValueMarshaller
-import com.roberthuaman.api.module.user.infrastructure.stub.UserStub
+import com.roberthuaman.api.module.user.domain.UserStub
 
 final class UserSpec extends AcceptanceSpec {
   "return all the system users" in get("/users") {
