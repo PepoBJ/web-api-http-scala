@@ -1,4 +1,4 @@
-package com.roberthuaman.api.module.shared.infraestructure.config
+package com.roberthuaman.api.module.shared.infrastructure.config
 
 import com.typesafe.config.Config
 
