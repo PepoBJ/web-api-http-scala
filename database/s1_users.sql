@@ -6,4 +6,6 @@ CREATE TABLE users (
   PRIMARY KEY (id),
   UNIQUE KEY u_user_id (user_id)
 )
-DEFAULT CHARSET = utf8mb4;
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE=utf8mb4_unicode_ci;

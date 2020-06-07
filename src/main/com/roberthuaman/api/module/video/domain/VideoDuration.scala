@@ -6,4 +6,4 @@ object VideoDuration {
   def apply(seconds: BigDecimal): VideoDuration = VideoDuration(seconds.longValue().seconds)
 }
 
-case class VideoDuration(value: Duration)
+case class VideoDuration(value: FiniteDuration)

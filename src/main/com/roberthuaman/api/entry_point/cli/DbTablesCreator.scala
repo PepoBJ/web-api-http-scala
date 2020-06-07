@@ -2,14 +2,17 @@ package com.roberthuaman.api.entry_point.cli
 
 import java.io.File
 import java.sql.{Connection, DriverManager}
-
-import com.roberthuaman.api.module.shared.infraestructure.config.DbConfig
+import scala.util.matching.Regex
 import com.typesafe.config.ConfigFactory
+import com.roberthuaman.api.module.shared.infrastructure.config.DbConfig
 
 import scala.io.Source._
 import scala.util.Try
-import scala.util.matching.Regex
 
+/**
+  * View usage: runMain com.roberthuaman.api.entry_point.cli.DbTablesCreator --usage
+  * Execute: runMain com.roberthuaman.api.entry_point.cli.DbTablesCreator
+  */
 object DbTablesCreator {
   private val databaseNameFromUrlRegex = new Regex("""\w+:\w+:\/\/\d+.\d+.\d+.\d+(?::\w+)?\/(\w+)""")
 
@@ -22,7 +25,6 @@ object DbTablesCreator {
   def main(args: Array[String]): Unit = {
     val parser = new scopt.OptionParser[CommandConfig]("DbTablesCreator") {
       head("Build needed environment to run tests", "1.0")
-
       opt[String]('f', "tablesFolder")
         .action((tablesFolder, currentConfig) => currentConfig.copy(tablesFolder = tablesFolder))
         .text("Folder containing all the `.sql` files with the `CREATE TABLE` definitions.")
