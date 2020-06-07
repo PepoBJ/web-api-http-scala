@@ -62,7 +62,7 @@ object DbTablesCreator {
     val tablesFolderFile = new File(tablesFolder)
     val tablesFiles = tablesFolderFile.listFiles()
 
-    println(s"[INFO] Creating the following tables: ${tablesFiles.mkString(", ")}…")
+    println(s"[INFO] Creating the following tables: ${tablesFiles.mkString(", ")}...")
 
     val createTablesQueries = tablesFiles.map(fromFile(_).getLines.mkString)
 

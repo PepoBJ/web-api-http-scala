@@ -14,7 +14,7 @@ object Dependencies {
     "com.typesafe.akka" %% "akka-stream" % Versions.akka,
     "com.typesafe.akka" %% "akka-http-spray-json" % Versions.akkaHttp,
     "org.tpolecat" %% "doobie-core" % "0.5.0",
-    "mysql" % "mysql-connector-java" % "5.1.45",
+    "mysql" % "mysql-connector-java" % "8.0.15",
     "com.github.scopt" %% "scopt" % "3.7.0"
   )
 
