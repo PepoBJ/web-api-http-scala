@@ -1,5 +1,5 @@
 /** ********* PROJECT INFO ******************/
-name := "api"
+name := "RobertHuaman Scala Api"
 version := "1.0"
 
 /** ********* PROJECT SETTINGS ******************/
