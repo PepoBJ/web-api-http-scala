@@ -19,8 +19,8 @@ protected[entry_point] abstract class AcceptanceSpec
     with Matchers
     with ScalaFutures
     with ScalatestRouteTest {
-  implicit val defaultPatience: PatienceConfig =
-    PatienceConfig(timeout = Span(0.9, Seconds), interval = Span(15, Millis))
+//  implicit val defaultPatience: PatienceConfig =
+//    PatienceConfig(timeout = Span(0.9, Seconds), interval = Span(15, Millis))
 
   private val appConfig = ConfigFactory.load("application")
   private val dbConfig = DbConfig(appConfig.getConfig("database"))
