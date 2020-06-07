@@ -11,7 +11,7 @@ import com.roberthuaman.api.module.shared.infrastructure.persistence.doobie.Doob
 import com.roberthuaman.api.module.user.infrastructure.dependency_injection.UserModuleDependencyContainer
 import com.roberthuaman.api.module.video.infrastructure.dependency_injection.VideoModuleDependencyContainer
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.time.{Millis, Seconds, Span}
+
 import org.scalatest.wordspec.AnyWordSpec
 
 protected[entry_point] abstract class AcceptanceSpec
@@ -19,8 +19,6 @@ protected[entry_point] abstract class AcceptanceSpec
     with Matchers
     with ScalaFutures
     with ScalatestRouteTest {
-//  implicit val defaultPatience: PatienceConfig =
-//    PatienceConfig(timeout = Span(0.9, Seconds), interval = Span(15, Millis))
 
   private val appConfig = ConfigFactory.load("application")
   private val dbConfig = DbConfig(appConfig.getConfig("database"))
