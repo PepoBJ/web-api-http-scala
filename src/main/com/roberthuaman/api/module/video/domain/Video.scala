@@ -1,9 +1,9 @@
 package com.roberthuaman.api.module.video.domain
 
-import scala.concurrent.duration.Duration
+import scala.concurrent.duration.FiniteDuration
 
 object Video {
-  def apply(id: String, title: String, duration: Duration, category: String): Video = Video(
+  def apply(id: String, title: String, duration: FiniteDuration, category: String): Video = Video(
     VideoId(id),
     VideoTitle(title),
     VideoDuration(duration),

@@ -9,10 +9,10 @@ import com.roberthuaman.api.module.video.infrastructure.repository.DoobieMySqlVi
 import scala.concurrent.ExecutionContext
 
 final class VideoModuleDependencyContainer(
-                                            doobieDbConnection: DoobieDbConnection
-                                          )(implicit executionContext: ExecutionContext) {
+    doobieDbConnection: DoobieDbConnection
+)(implicit executionContext: ExecutionContext) {
   val repository: VideoRepository = new DoobieMySqlVideoRepository(doobieDbConnection)
 
   val videosSearcher: VideosSearcher = new VideosSearcher(repository)
-  val videoCreator: VideoCreator     = new VideoCreator(repository)
+  val videoCreator: VideoCreator = new VideoCreator(repository)
 }

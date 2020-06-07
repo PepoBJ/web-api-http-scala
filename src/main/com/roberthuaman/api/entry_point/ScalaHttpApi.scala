@@ -1,16 +1,16 @@
 package com.roberthuaman.api.entry_point
 
-import scala.concurrent.{ExecutionContext, ExecutionContextExecutor}
-import scala.io.StdIn
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
-import com.roberthuaman.api.module.course.infrastructure.dependency_injection.CourseModuleDependencyContainer
+import com.typesafe.config.ConfigFactory
 import com.roberthuaman.api.module.shared.infrastructure.config.DbConfig
 import com.roberthuaman.api.module.shared.infrastructure.dependency_injection.SharedModuleDependencyContainer
 import com.roberthuaman.api.module.user.infrastructure.dependency_injection.UserModuleDependencyContainer
 import com.roberthuaman.api.module.video.infrastructure.dependency_injection.VideoModuleDependencyContainer
-import com.typesafe.config.ConfigFactory
+
+import scala.concurrent.ExecutionContext
+import scala.io.StdIn
 
 object ScalaHttpApi {
   def main(args: Array[String]): Unit = {
@@ -31,8 +31,7 @@ object ScalaHttpApi {
 
     val container = new EntryPointDependencyContainer(
       new UserModuleDependencyContainer(sharedDependencies.doobieDbConnection),
-      new VideoModuleDependencyContainer(sharedDependencies.doobieDbConnection),
-      new CourseModuleDependencyContainer
+      new VideoModuleDependencyContainer(sharedDependencies.doobieDbConnection)
     )
 
     val routes = new Routes(container)
@@ -50,6 +49,6 @@ object ScalaHttpApi {
 
     bindingFuture
       .flatMap(_.unbind())
-      .onComplete(_ => system.terminate())
+      .onComplete(_ => sharedDependencies.actorSystem.terminate())
   }
 }

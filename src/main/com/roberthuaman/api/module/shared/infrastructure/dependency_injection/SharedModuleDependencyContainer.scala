@@ -8,8 +8,8 @@ import com.roberthuaman.api.module.shared.infrastructure.persistence.doobie.Doob
 import scala.concurrent.ExecutionContext
 
 final class SharedModuleDependencyContainer(actorSystemName: String, dbConfig: DbConfig) {
-  implicit val actorSystem: ActorSystem  = ActorSystem(actorSystemName)
-  val materializer: ActorMaterializer    = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem(actorSystemName)
+  val materializer: ActorMaterializer = ActorMaterializer()
   val executionContext: ExecutionContext = actorSystem.dispatcher
 
   val doobieDbConnection: DoobieDbConnection = new DoobieDbConnection(dbConfig)

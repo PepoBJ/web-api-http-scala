@@ -1,4 +1,4 @@
-package com.roberthuaman.api.module.user.application.create
+package com.roberthuaman.api.module.user.application.register
 
 import com.roberthuaman.api.module.user.domain.{User, UserId, UserName, UserRepository}
 

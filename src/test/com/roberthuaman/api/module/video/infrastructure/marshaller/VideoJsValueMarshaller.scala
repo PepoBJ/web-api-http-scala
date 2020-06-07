@@ -10,7 +10,7 @@ object VideoJsValueMarshaller {
         JsObject(
           "id" -> JsString(v.id.value.toString),
           "title" -> JsString(v.title.value),
-          "duration" -> JsNumber(v.duration.value.toSeconds),
+          "duration_in_seconds" -> JsNumber(v.duration.value.toSeconds),
           "category" -> JsString(v.category.toString)
         )
       )
