@@ -1,0 +1,61 @@
+package com.roberthuaman.api.module.shared.infrastructure.message_broker.rabbitmq
+
+import com.roberthuaman.api.module.IntegrationTestCase
+import com.roberthuaman.api.module.shared.domain.Message
+import com.roberthuaman.api.module.video.domain.VideoCreatedStub
+import org.scalatest.concurrent.Eventually
+
+import scala.collection.mutable
+import scala.concurrent.duration._
+
+final class RabbitMqMessagePublisherShould extends IntegrationTestCase with Eventually {
+  override implicit val patienceConfig: PatienceConfig = PatienceConfig(timeout = 1.second, interval = 50.millis)
+
+  private val queueName = "roberthuaman_scala_api.video_created"
+  private val videoCreatedQueuePurger: MessagePurger = new RabbitMqMessagePurger(rabbitMqChannelFactory)(queueName)
+  private val videoCreatedQueueConsumer: MessageConsumer =
+    new RabbitMqMessageConsumer(rabbitMqChannelFactory)(queueName)
+
+  private val consumedMessages: mutable.Buffer[Message] = mutable.Buffer.empty
+
+  "publish VideoCreated domain events" in {
+
+    /** [If queue not exists throw error when purge]
+     * [Create publish example] */
+    val videoCreatedForFirstQueue = VideoCreatedStub.random
+    messagePublisher.publish(videoCreatedForFirstQueue)
+    /**********************************************************/
+
+    videoCreatedQueuePurger.purgeQueue()
+    waitUntilQueueIsEmpty()
+
+    val videoCreated = VideoCreatedStub.random
+    messagePublisher.publish(videoCreated)
+    waitUntilQueueHasMessages()
+
+    videoCreatedQueueConsumer.startConsuming(extractConsumedMessagesHandler)
+    waitUntilQueueIsEmpty()
+
+    consumedMessages.synchronized(consumedMessages shouldBe Seq(videoCreated))
+  }
+
+  private def extractConsumedMessagesHandler(consumedMessage: Message): Boolean = {
+    consumedMessages.synchronized(consumedMessages += consumedMessage)
+    val handledSuccessfully = true
+    handledSuccessfully
+  }
+
+  private def waitUntilQueueHasMessages(): Unit = eventually(
+    if (videoCreatedQueueConsumer.hasMessagesToConsume) ()
+    else throw new RuntimeException("Queue has no messages. Waiting a little bit more…")
+  )
+
+  private def waitUntilQueueIsEmpty(): Unit = eventually(
+    if (videoCreatedQueueConsumer.isEmpty) {
+      // If the RabbitMQ queue doesn't has any message, it doesn't mean we're not processing the last ones.
+      // Wait a little in order to let consuming and acknowledge these messages.
+      // More info under the `message-count` domain concept: https://www.rabbitmq.com/amqp-0-9-1-reference.html#domains
+      Thread.sleep(50)
+    } else throw new RuntimeException("Queue is not empty. Waiting a little bit more…")
+  )
+}
