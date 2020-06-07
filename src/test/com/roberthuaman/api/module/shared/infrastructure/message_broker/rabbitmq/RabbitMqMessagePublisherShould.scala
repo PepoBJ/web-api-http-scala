@@ -21,11 +21,11 @@ final class RabbitMqMessagePublisherShould extends IntegrationTestCase with Even
   "publish VideoCreated domain events" in {
 
     /** [If queue not exists throw error when purge]
-     * [Create publish example] */
+      * [Create publish example] */
     val videoCreatedForFirstQueue = VideoCreatedStub.random
     messagePublisher.publish(videoCreatedForFirstQueue)
-    /**********************************************************/
 
+    /**********************************************************/
     videoCreatedQueuePurger.purgeQueue()
     waitUntilQueueIsEmpty()
 

@@ -1,6 +1,6 @@
 package com.roberthuaman.api.module
 
-import com.roberthuaman.api.module.shared.domain.MessagePublisher
+import com.roberthuaman.api.module.shared.domain.{Logger, MessagePublisher}
 import com.typesafe.config.ConfigFactory
 import com.roberthuaman.api.module.shared.infrastructure.config.{DbConfig, MessageBrokerConfig}
 import com.roberthuaman.api.module.shared.infrastructure.dependency_injection.SharedModuleDependencyContainer
@@ -22,4 +22,5 @@ protected[api] trait IntegrationTestCase extends UnitTestCase {
   protected val doobieDbConnection: DoobieDbConnection = sharedDependencies.doobieDbConnection
   protected val rabbitMqChannelFactory: RabbitMqChannelFactory = new RabbitMqChannelFactory(publisherConfig)
   protected val messagePublisher: MessagePublisher = sharedDependencies.messagePublisher
+  protected val logger: Logger = sharedDependencies.logger
 }

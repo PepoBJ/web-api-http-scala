@@ -16,7 +16,10 @@ object Dependencies {
     "org.tpolecat" %% "doobie-core" % "0.8.8",
     "mysql" % "mysql-connector-java" % "8.0.15",
     "com.github.scopt" %% "scopt" % "3.7.0",
-    "com.newmotion" %% "akka-rabbitmq" % "5.0.0"
+    "com.newmotion" %% "akka-rabbitmq" % "5.0.0",
+    "ch.qos.logback" % "logback-classic" % "1.2.3", // Logging backend implementation
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2", // SLF4J Scala wrapper
+    "net.logstash.logback" % "logstash-logback-encoder" % "4.11" // Log JSON encoder
   )
 
   val test = Seq(

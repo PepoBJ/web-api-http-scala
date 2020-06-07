@@ -2,8 +2,9 @@ package com.roberthuaman.api.module.shared.infrastructure.dependency_injection
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import com.roberthuaman.api.module.shared.domain.MessagePublisher
+import com.roberthuaman.api.module.shared.domain.{Logger, MessagePublisher}
 import com.roberthuaman.api.module.shared.infrastructure.config.{DbConfig, MessageBrokerConfig}
+import com.roberthuaman.api.module.shared.infrastructure.logger.scala_logging.ScalaLoggingLogger
 import com.roberthuaman.api.module.shared.infrastructure.message_broker.rabbitmq.{
   RabbitMqChannelFactory,
   RabbitMqMessagePublisher
@@ -25,4 +26,6 @@ final class SharedModuleDependencyContainer(
 
   private val rabbitMqChannelFactory = new RabbitMqChannelFactory(publisherConfig)
   val messagePublisher: MessagePublisher = new RabbitMqMessagePublisher(rabbitMqChannelFactory)
+
+  val logger: Logger = new ScalaLoggingLogger
 }
