@@ -7,6 +7,6 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.time.{Millis, Seconds, Span}
 
 protected[module] trait UnitTestCase extends AnyWordSpec with Matchers with ScalaFutures with MockFactory {
-//  implicit val defaultPatience: PatienceConfig =
-//    PatienceConfig(timeout = Span(1, Seconds), interval = Span(100, Millis))
+  implicit val defaultPatience: PatienceConfig =
+    PatienceConfig(timeout = Span(5, Seconds), interval = Span(100, Millis))
 }
