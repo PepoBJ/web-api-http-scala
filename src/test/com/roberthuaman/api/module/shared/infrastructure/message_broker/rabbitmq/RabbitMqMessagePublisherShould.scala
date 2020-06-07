@@ -19,6 +19,13 @@ final class RabbitMqMessagePublisherShould extends IntegrationTestCase with Even
   private val consumedMessages: mutable.Buffer[Message] = mutable.Buffer.empty
 
   "publish VideoCreated domain events" in {
+
+    /** [If queue not exists throw error when purge]
+     * [Create publish example] */
+    val videoCreatedForFirstQueue = VideoCreatedStub.random
+    messagePublisher.publish(videoCreatedForFirstQueue)
+    /**********************************************************/
+
     videoCreatedQueuePurger.purgeQueue()
     waitUntilQueueIsEmpty()
 
