@@ -11,6 +11,8 @@ libraryDependencies ++= Dependencies.production
 /** ********* TEST DEPENDENCIES *****************/
 libraryDependencies ++= Dependencies.test
 
+enablePlugins(JavaAppPackaging)
+
 /** ********* COMMANDS ALIASES ******************/
 addCommandAlias("t", "test")
 addCommandAlias("to", "testOnly")
